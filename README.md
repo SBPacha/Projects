@@ -79,6 +79,8 @@ Pozostałe to grupa: „Drogie”
 
 18. Znajdź dzień w którym najwięcej zostało złożonych zamówień
 
+
+
 Projekt 2 - ML
 Projekt końcowy
 
