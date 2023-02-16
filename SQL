@@ -1,0 +1,309 @@
+-- 1. Stwórz Bazę „Sklep odzieżowy”
+CREATE DATABASE Slep_odziezowy;
+USE Slep_odziezowy;
+
+/* 2. Utwórz tabelę „Producenci” z kolumnami:
+id producenta
+nazwa producenta
+adres producenta
+nip producenta
+data podpisania umowy z producentem
+Do każdej kolumny ustaw odpowiedni „constraint” */
+
+CREATE TABLE Producenci (
+ID_PRODUCENTA varchar(6) PRIMARY KEY NOT NULL DEFAULT '',
+NAZWA_PRODUCENTA text DEFAULT NULL,
+ADRES_PRODUCENTA text DEFAULT NULL,
+NIP_PRODUCENTA bigint DEFAULT NULL,
+DATA_PODPIS_UMOWY_Z_PROD date DEFAULT NULL
+);
+
+/*
+7. Każdą tabelę uzupełnij danymi wg:
+Tabela „Producenci” – 4 pozycje
+Tabela „Produkty” – 20 pozycji
+Tabela „Zamówienia” – 10 pozycji
+Tabela „Klienci” – 10 pozycji
+*/
+
+INSERT INTO Producenci (ID_PRODUCENTA, NAZWA_PRODUCENTA, ADRES_PRODUCENTA, NIP_PRODUCENTA, DATA_PODPIS_UMOWY_Z_PROD) VALUES
+('P001', 'Promod', 'Paryż Francja', '5252128400', '2022-09-12'),
+('P002',  'H&M', 'Sztokholm Szwecja', '5252253246', '2022-09-11'),
+('P003',  'Reserved', 'Gdańsk Polska', '5831014898', '2022-09-10'),
+('P004',  'Zara', 'La Coruña Hiszpania', '5272227588', '2022-09-09');
+
+SELECT *
+FROM Producenci;
+
+/*
+3. Utwórz tabelę „Produkty” z kolumnami:
+
+id produktu
+id producenta
+nazwa produktu
+opis produktu
+cena netto zakupu
+cena brutto zakupu
+cena netto sprzedaży
+cena brutto sprzedaży
+procent VAT sprzedaży
+Do każdej kolumny ustaw odpowiedni „constraint”
+*/
+
+CREATE TABLE Produkty (
+ID_PRODUKTU varchar(6) PRIMARY KEY NOT NULL DEFAULT '',
+ID_PRODUCENTA varchar(6) DEFAULT NULL,
+NAZWA_PRODUKTU text DEFAULT NULL,
+OPIS_PRODUKTU text DEFAULT NULL,
+CENA_NETTO_ZAKUPU float DEFAULT NULL,
+CENA_BRUTTO_ZAKUPU float DEFAULT NULL,
+CENA_NETTO_SPRZEDAZY float DEFAULT NULL,
+CENA_BRUTTO_SPRZEDAZY float DEFAULT NULL,
+PROCENT_VAT_SPRZEDAZY float DEFAULT NULL
+);
+
+INSERT INTO Produkty (ID_PRODUKTU, ID_PRODUCENTA, NAZWA_PRODUKTU, OPIS_PRODUKTU, CENA_NETTO_ZAKUPU, CENA_BRUTTO_ZAKUPU, CENA_NETTO_SPRZEDAZY, CENA_BRUTTO_SPRZEDAZY, PROCENT_VAT_SPRZEDAZY) VALUES
+('A1', 'P001', 'JEANSY SKINNY GASPARD', 'JASNY SPRANY JEANS', 47.19, 60.50, 77.99, 99.90, 0.22),
+('A2',  'P001', 'JEANSY SKINNY GASPARD', 'CIEMNY SPRANY JEANS', 47.19, 60.50, 77.99, 99.90, 0.22),
+('A3',  'P001', 'JEANSY SKINNY GASPARD', 'SZARY SPRANY JEANS', 47.19, 60.50, 77.99, 99.90, 0.22),
+('A4',  'P001', 'JEANSY SKINNY GASPARD', 'CZARNY SPRANY JEANS', 47.19, 60.50, 77.99, 99.90, 0.22),
+('A5',  'P001', 'JEANSY SKINNY GASPARD', 'BIAŁY JEANS', 47.19, 60.50, 77.99, 99.90, 0.22),
+('A6',  'P002', 'SKINNY HIGH ANKLE JEANS', 'CZARNY JEANS', 31.51, 40.40, 62.39, 79.99, 0.22),
+('A7',  'P002', 'SKINNY HIGH ANKLE JEANS', 'CIEMNOSZARY DENIM', 31.51, 40.40, 62.39, 79.99, 0.22),
+('A8',  'P002', 'SKINNY HIGH ANKLE JEANS', 'JASNONIEBIESKI DENIM', 31.51, 40.40, 62.39, 79.99, 0.22),
+('A9',  'P002', 'SKINNY HIGH ANKLE JEANS', 'CIEMNONIEBIESKI DENIM', 31.51, 40.40, 62.39, 79.99, 0.22),
+('B1',  'P002', 'SKINNY HIGH ANKLE JEANS', 'CZARNY DENIM', 31.51, 40.40, 62.39, 79.99, 0.22),
+('B2',  'P003', 'JEANSY WIDE LEG', 'JASNONIEBIESKIE ROZSZERZANE', 68.01, 87.19, 109.19, 139.99, 0.22),
+('B3',  'P003', 'JEANSY WIDE LEG', 'CIEMNONIEBIESKIE ROZSZERZANE', 68.01, 87.19, 109.19, 139.99, 0.22),
+('B4',  'P003', 'JEANSY WIDE LEG', 'JASNOSZARE ROZSZERZANE', 68.01, 87.19, 109.19, 139.99, 0.22),
+('B5',  'P003', 'JEANSY WIDE LEG', 'CIEMNOSZARE ROZSZERZANE', 68.01, 87.19, 109.19, 139.99, 0.22),
+('B6',  'P003', 'JEANSY WIDE LEG', 'CZARNE ROZSZERZANE', 68.01, 87.19, 109.19, 139.99, 0.22),
+('B7',  'P004', 'JEANS O KROJU SKINNY W STYLU VINTAGE Z ROZDARCIAMI', 'JASNONIEBIESKIE', 55.24, 70.82, 92.82, 119.00, 0.22),
+('B8',  'P004', 'JEANS O KROJU SKINNY W STYLU VINTAGE Z ROZDARCIAMI', 'CIEMNONIEBIESKIE', 55.24, 70.82, 92.82, 119.00, 0.22),
+('B9',  'P004', 'JEANS O KROJU SKINNY W STYLU VINTAGE Z ROZDARCIAMI', 'JASNOSZARE', 55.24, 70.82, 92.82, 119.00, 0.22),
+('C1',  'P004', 'JEANS O KROJU SKINNY W STYLU VINTAGE Z ROZDARCIAMI', 'CIEMNOSZARE', 55.24, 70.82, 92.82, 119.00, 0.22),
+('C2',  'P004', 'JEANS O KROJU SKINNY W STYLU VINTAGE Z ROZDARCIAMI', 'CZARNE', 55.24, 70.82, 92.82, 119.00, 0.22);
+
+SELECT *
+FROM Produkty
+ORDER BY ID_PRODUKTU ASC;
+
+/* 
+4. Utwórz tabelę „Zamówienia” z kolumnami:
+id zamówienia
+id klienta
+id produktu
+Data zamówienia
+Do każdej kolumny ustaw odpowiedni „constraint”
+*/
+
+CREATE TABLE Zamowienia (
+ID_ZAMOWIENIA varchar(6) PRIMARY KEY NOT NULL DEFAULT '',
+ID_KLIENTA varchar(6) NOT NULL,
+ID_PRODUKTU varchar(6) NOT NULL,
+DATA_ZAMOWIENIA date DEFAULT NULL
+);
+
+INSERT INTO Zamowienia (ID_ZAMOWIENIA, ID_KLIENTA, ID_PRODUKTU, DATA_ZAMOWIENIA) VALUES
+('Z000', 'C00013', 'A1', '2022-09-12'),
+('Z001', 'C00001', 'A2', '2022-09-12'),
+('Z002', 'C00020', 'A3', '2022-09-12'),
+('Z003', 'C00025', 'A4', '2022-09-12'),
+('Z004', 'C00024', 'A5', '2022-09-12'),
+('Z005', 'C00015', 'A6', '2022-09-12');
+INSERT INTO Zamowienia (ID_ZAMOWIENIA, ID_KLIENTA, ID_PRODUKTU, DATA_ZAMOWIENIA) VALUES
+('Z010', 'C00015', 'A1', '2022-09-12')
+;
+
+INSERT INTO Zamowienia (ID_ZAMOWIENIA, ID_KLIENTA, ID_PRODUKTU) VALUES
+('Z006', 'C00002', 'A7'),
+('Z007', 'C00018', 'A8'),
+('Z008', 'C00019', 'A9'),
+('Z009', 'C00005', 'B1')
+;
+
+SELECT *
+FROM Zamowienia 
+ORDER BY ID_PRODUKTU ASC;
+
+/*
+5. Utwórz tabelę „Klienci” z kolumnami:
+id klienta
+id zamówienia
+imię
+nazwisko
+adres
+Do każdej kolumny ustaw odpowiedni „constraint”
+*/
+
+CREATE TABLE Klienci (
+ID_KLIENTA varchar(6) PRIMARY KEY NOT NULL DEFAULT '',
+ID_ZAMOWIENIA varchar(6) DEFAULT NULL,
+IMIE_KLIENTA text DEFAULT NULL,
+NAZWISKO_KLIENTA text DEFAULT NULL,
+ADRES_KLIENTA text DEFAULT NULL
+);
+
+INSERT INTO Klienci (ID_KLIENTA, ID_ZAMOWIENIA, IMIE_KLIENTA, NAZWISKO_KLIENTA, ADRES_KLIENTA) VALUES
+('C00013', 'Z000', 'Katarzyna', 'Wozniak', 'Lodz Polska'),
+('C00001', 'Z001', 'Stefania', 'Woznicka', 'Lodz Polska'),
+('C00020', 'Z002', 'Lucyna', 'Puchyr', 'Lodz Polska'),
+('C00025', 'Z003', 'Alina', 'Nowicka', 'Lodz Polska'),
+('C00024', 'Z004', 'Barbara', 'Kijewska', 'Lodz Polska'),
+('C00015', 'Z005', 'Anna', 'Kowalska', 'Lodz Polska')
+;
+
+INSERT INTO Klienci (ID_KLIENTA, ID_ZAMOWIENIA, IMIE_KLIENTA, NAZWISKO_KLIENTA) VALUES
+('C00002', 'Z006', 'Izabela', 'Stelmaszczyk'),
+('C00018', 'Z007', 'Zofia', 'Kowalczyk'),
+('C00019', 'Z008', 'Czeslawa', 'Buczylko'),
+('C00005', 'Z009', 'Danuta', 'Walczak')
+;
+
+SELECT *
+FROM Klienci 
+ORDER BY ID_ZAMOWIENIA ASC;
+
+/*
+6. Połącz tabele ze sobą za pomocą kluczy obcych:
+Produkty – Producenci
+Zamówienia – Produkty
+Zamówienia - Klienci
+*/
+
+ALTER TABLE Produkty ADD CONSTRAINT producenci_fk FOREIGN KEY (ID_PRODUCENTA) REFERENCES Producenci (ID_PRODUCENTA);
+ALTER TABLE Zamowienia ADD CONSTRAINT produkty_fk FOREIGN KEY (ID_PRODUKTU) REFERENCES Producenci (ID_PRODUKTU);
+ALTER TABLE Zamowienia ADD CONSTRAINT klienci_fk FOREIGN KEY (ID_KLIENTA) REFERENCES Klienci (ID_KLIENTA);
+
+/*
+8. Wyświetl wszystkie produkty z wszystkimi danymi od producenta który znajduje się na pozycji 1 w tabeli „Producenci”
+*/
+
+SELECT *
+FROM Produkty 
+WHERE ID_PRODUCENTA = 'P001';
+
+-- 9. Posortuj te produkty alfabetycznie po nazwie
+
+SELECT *
+FROM Produkty 
+WHERE ID_PRODUCENTA = 'P001'
+ORDER BY NAZWA_PRODUKTU;
+
+/* lub
+SELECT *
+FROM Produkty 
+WHERE ID_PRODUCENTA = (SELECT ID_PRODUCENTA FROM producenci LIMIT 1)
+ORDER BY NAZWA_PRODUKTU;*/
+
+lub
+WITH Pozycja_1 AS (
+SELECT ID_PRODUCENTA
+FROM producenci
+LIMIT 1)
+SELECT *
+FROM produkty
+WHERE ID_PRODUCENTA = (SELECT ID_PRODUCENTA FROM Pozycja_1)
+ORDER BY NAZWA_PRODUKTU;
+*/
+
+-- 10. Wylicz średnią cenę za produktu od producenta z pozycji 1
+
+SELECT AVG(CENA_BRUTTO_SPRZEDAZY)
+FROM Produkty 
+WHERE ID_PRODUCENTA = (SELECT ID_PRODUCENTA FROM producenci LIMIT 1);
+
+/*
+11. Wyświetl dwie grupy produktów tego producenta:
+Połowa najtańszych to grupa: „Tanie”
+Pozostałe to grupa: „Drogie”
+*/
+
+SELECT NAZWA_PRODUKTU, CENA_BRUTTO_SPRZEDAZY,
+	(CASE WHEN CENA_BRUTTO_SPRZEDAZY < 100 THEN 'Tanie'
+        WHEN CENA_BRUTTO_SPRZEDAZY > 100 THEN 'Drogie'
+        END) AS Wartosc_Produktow
+FROM Produkty
+WHERE ID_PRODUCENTA = 'P001';
+
+-- 12. Wyświetl produkty zamówione, wyświetlając tylko ich nazwę
+
+SELECT DISTINCT NAZWA_PRODUKTU
+FROM produkty
+LEFT JOIN zamowienia ON zamowienia.ID_PRODUKTU=produkty.ID_PRODUKTU;
+
+/* 
+13. Wyświetl wszystkie produkty zamówione – ograniczając wyświetlanie do 5 pozycji
+*/
+
+SELECT NAZWA_PRODUKTU
+FROM produkty
+LEFT JOIN zamowienia ON zamowienia.ID_PRODUKTU=produkty.ID_PRODUKTU
+LIMIT 5;
+-- 
+14. Policz łączną wartość wszystkich zamówień
+
+SELECT round(SUM(CENA_BRUTTO_SPRZEDAZY),0)
+FROM produkty
+RIGHT JOIN zamowienia ON zamowienia.ID_PRODUKTU=produkty.ID_PRODUKTU;
+
+/*
+15. Wyświetl wszystkie zamówienia wraz z nazwą produktu sortując je wg daty od najstarszego do najnowszego
+*/
+
+SELECT produkty.NAZWA_PRODUKTU, DATA_ZAMOWIENIA
+FROM zamowienia
+LEFT JOIN produkty ON zamowienia.ID_PRODUKTU=produkty.ID_PRODUKTU
+ORDER BY DATA_ZAMOWIENIA;
+
+/*
+16. Sprawdź czy w tabeli produkty masz uzupełnione wszystkie dane – wyświetl pozycje dla których brakuje danych
+*/
+
+SELECT *
+FROM produkty
+WHERE ID_PRODUKTU IS NULL OR ID_PRODUCENTA IS NULL OR NAZWA_PRODUKTU IS NULL OR OPIS_PRODUKTU IS NULL OR CENA_NETTO_ZAKUPU = 0 OR CENA_BRUTTO_ZAKUPU = 0 OR CENA_NETTO_SPRZEDAZY = 0 OR CENA_BRUTTO_SPRZEDAZY = 0 OR PROCENT_VAT_SPRZEDAZY = 0;
+*/
+
+SELECT z.ID_PRODUKTU, p.NAZWA_PRODUKTU, p.CENA_BRUTTO_SPRZEDAZY
+FROM zamowienia z
+JOIN produkty p ON z.ID_PRODUKTU = p.ID_PRODUKTU
+WHERE count(z.ID_PRODUKTU)=(SELECT MAX(ID_PRODUKTU) FROM zamowienia);
+
+-- 17. Wyświetl produkt najczęściej sprzedawany wraz z jego ceną
+
+WITH Liczba_zamowien AS (
+SELECT ID_PRODUKTU, count(ID_ZAMOWIENIA) AS liczba_zamowien
+FROM zamowienia
+GROUP BY ID_PRODUKTU
+)
+SELECT lz.ID_PRODUKTU, lz.liczba_zamowien, p.CENA_BRUTTO_SPRZEDAZY, p.NAZWA_PRODUKTU
+FROM Liczba_zamowien lz
+JOIN produkty p ON lz.ID_PRODUKTU = p.ID_PRODUKTU
+WHERE liczba_zamowien = (SELECT MAX(liczba_zamowien) FROM Liczba_zamowien)
+;
+ 
+/* lub
+WITH Liczba_zamowien AS (
+SELECT ID_PRODUKTU, count(ID_ZAMOWIENIA) AS liczba_zamowien
+FROM zamowienia
+GROUP BY ID_PRODUKTU
+ORDER BY Liczba_zamowien DESC
+LIMIT 1
+)
+SELECT lz.ID_PRODUKTU, lz.liczba_zamowien, p.CENA_BRUTTO_SPRZEDAZY, p.NAZWA_PRODUKTU
+FROM Liczba_zamowien lz
+JOIN produkty p ON lz.ID_PRODUKTU = p.ID_PRODUKTU
+;
+*/
+
+-- 18. Znajdź dzień w którym najwięcej zostało złożonych zamówień
+
+WITH zamowienia_w_dniu AS (
+SELECT DATA_ZAMOWIENIA, count(ID_ZAMOWIENIA) AS zamowienia_w_dniu
+FROM zamowienia
+GROUP BY DATA_ZAMOWIENIA
+)
+SELECT DATA_ZAMOWIENIA, zamowienia_w_dniu
+FROM zamowienia_w_dniu
+WHERE zamowienia_w_dniu = (SELECT MAX(zamowienia_w_dniu) FROM zamowienia);
