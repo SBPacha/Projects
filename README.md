@@ -1,5 +1,5 @@
 # Projects
-Projects to CV
+Projekty do CV
 
 Projekt 1 - SQL
 1. Stwórz Bazę „Sklep odzieżowy”
