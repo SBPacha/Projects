@@ -95,7 +95,7 @@ Poniżej zaprezentowane są poszczególne etapy analizy, których wykonanie jest
 4.	W jaki sposób roczny dochód wiąże się z prawdopodobieństwem niewykonania zobowiązania?
 5.	W jaki sposób historia zatrudnienia wiąże się z prawdopodobieństwem niewykonania zobowiązania?
 6.	Jak wielkość żądanej pożyczki jest powiązana z prawdopodobieństwem niewykonania zobowiązania?
-3.	Feature Engineering – utwórz 20 nowych zmiennych
+3.	Feature Engineering – utwórz nowe zmienne
 
 4.	Modelowanie
 1.	Wykonaj klasteryzację danych (wypróbuj do tego celu kilka metod, min. 3) i sprawdź, czy występują jakieś segmenty pożyczkobiorców, wykorzystaj odpowiednie metody do określenia optymalnej liczby klastrów
